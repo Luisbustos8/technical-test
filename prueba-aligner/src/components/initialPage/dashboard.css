@@ -1,0 +1,92 @@
+.initial-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.header-clients {
+  background-color: lightgrey;
+  height: 50px;
+  margin-top: 0px;
+}
+.header-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 50px;
+  padding-top: 10px;
+  margin: 0;
+}
+
+.clients-icon {
+  display: flex;
+  height: 20px;
+  width: 20px;
+  padding-top: 10px;
+}
+.clients-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.icon-container {
+  display: flex;
+  flex-direction: row;
+}
+.title-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.title-list {
+  margin: 0;
+}
+.view-list {
+  margin: 0;
+}
+.clients-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-left: 100px;
+}
+.button {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  height: 60px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 2px solid;
+  border-radius: 7px;
+  border-color: #00acee;
+  font-size: 16px;
+  font-weight: bold;
+  color: #00acee;
+}
+
+.button:hover {
+  border-color: none;
+  background-color: #00acee;
+  color: white;
+}
+
+.user-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-left: 100px;
+}
+
+.view-icon {
+  height: 30px;
+  width: 30px;
+  margin-left: 30px;
+  margin-top: 15px;
+}

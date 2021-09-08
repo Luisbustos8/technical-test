@@ -46,21 +46,6 @@
   font-family: "Montserrat";
 }
 
-.button {
-  border: none;
-  height: 30px;
-  width: 150px;
-  border-radius: 20px;
-  background-color: #5e00d6;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 @media (max-width: 900px) {
   .header {
     margin: 0 3rem;

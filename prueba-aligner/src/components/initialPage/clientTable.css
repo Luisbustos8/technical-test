@@ -1,0 +1,61 @@
+.container-table {
+  display: flex;
+  margin-left: 80px;
+  margin-top: 20px;
+  width: 90%;
+  height: 500px;
+}
+.table {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.nombre {
+  padding: 10px;
+  align-items: center;
+  background-color: lightgray;
+  width: 33%;
+  height: 10px;
+}
+.profile {
+  height: 30px;
+  width: 30px;
+  margin-left: 30px;
+  margin-top: 15px;
+  border-radius: 50%;
+}
+.clinica {
+  padding: 10px;
+  align-items: center;
+  background-color: lightgray;
+  width: 20%;
+  height: 10px;
+}
+
+.tr {
+  margin: 60px;
+  border: solid 1px red;
+}
+
+.celda {
+  height: 40px;
+  /* border: solid 1px;
+  border-radius: 5px; */
+}
+.celda-name {
+  display: flex;
+  flex-direction: row;
+}
+.celda-data {
+  display: flex;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.name {
+  padding-right: 10px;
+}
+.loader {
+  display: flex;
+  margin-left: 500px;
+}

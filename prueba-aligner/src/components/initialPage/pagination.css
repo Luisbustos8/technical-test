@@ -1,0 +1,28 @@
+.pagination {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+a.active {
+  background-color: black;
+  color: white;
+}
+
+a.active:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  color: black;
+}

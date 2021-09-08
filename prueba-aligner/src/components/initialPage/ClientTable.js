@@ -1,38 +1,59 @@
 import React from 'react';
-import placeholder from '../../assets/placeholder.png'
 import clientData from '../../api/data copy.json';
 import Loader from '../loader/loader';
+import Pagination from './pagination';
 
+import placeholder from '../../assets/placeholder.png'
 import './clientTable.css'
-import { useIsFocusVisible } from '@material-ui/core';
+import { Table } from '@material-ui/core';
+
 
 
 
 const ClientTable = () => {
- 
 
-
-    const [personalData, setPersonalData] = React.useState();
+    const [personalData, setPersonalData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState(null)
+    const [error, setError] = React.useState(null);
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [dataPerPage, setDataPerPage] = React.useState(5);
 
+   
 
-    const handleData = () => {
+    React.useEffect( () => {
+        const handleData = () => {
         let values = [];
         for (const [key, value] of Object.entries(clientData)){
              values.push(value[0])
+        }
+        try{
+            setLoading(true)
+            setPersonalData(values)
+        } catch(e) {
+            setError(e)
+        } finally {
+            setLoading(false)
+        }
     }
-    setPersonalData(values)
-}
-
-    React.useEffect(() => {
-        handleData()
+       handleData();
+        
     },[])
 
-    console.log(personalData)
+    // Get current data
+
+    const indexOfLastClient = currentPage * dataPerPage;
+    const indexOfFirstClient = indexOfLastClient - dataPerPage;
+    const currentData = personalData.slice(indexOfFirstClient, indexOfLastClient);
+
+    console.log(currentData)
+
+    //Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+
   return (
         <div > 
-            {personalData === undefined ? <Loader className='loader' /> :
+            {!currentData ?  <Loader className='loader' /> :
             <table class="table">
                 <thead>
                     <tr>
@@ -44,7 +65,7 @@ const ClientTable = () => {
                     </tr>
                 </thead>
               <tbody>
-                  {personalData.map(dat =>   
+                  {currentData.map(dat => 
                     <tr className='tr'>
                         <td className='celda'>
                             <div className='celda-name'>
@@ -54,7 +75,6 @@ const ClientTable = () => {
                                         {dat.datos_paciente.nombre}
                                     </div>
                                 {dat.datos_paciente.apellidos}
-                                
                                 </div>
                             </div>
                         </td>
@@ -69,11 +89,17 @@ const ClientTable = () => {
                                 <option value='borrar'>Borrar</option>
                             </select>
                         </td>
-                    </tr>  
-                    )}      
+                    </tr> 
+                    )} 
+                    <Pagination 
+                        dataPerPage={dataPerPage} 
+                        totalData={personalData.length}
+                        paginate={paginate}
+                    />
                 </tbody>
             </table>
-        }       
+            
+        }
         </div>  
     )
 }

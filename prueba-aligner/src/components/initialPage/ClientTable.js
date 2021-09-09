@@ -2,39 +2,39 @@ import React from 'react';
 import clientData from '../../api/data copy.json';
 import Loader from '../loader/loader';
 import Pagination from './pagination';
-
 import placeholder from '../../assets/placeholder.png'
 import './clientTable.css'
-import { Table } from '@material-ui/core';
 
 
 
 
-const ClientTable = () => {
+const ClientTable = ({result}) => {
 
     const [personalData, setPersonalData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
-    const [currentPage, setCurrentPage] = React.useState(1);
-    const [dataPerPage, setDataPerPage] = React.useState(5);
-
+    const [search, setSearch] = React.useState([]);
+    const [user, setUser] = React.useState([]);
+    const [name, setName] = React.useState([])
+    const [filtering, setFiltering ] = React.useState(false)
    
+   
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [dataPerPage, setDataPerPage] = React.useState(5 || result);
 
-    React.useEffect( () => {
-        const handleData = () => {
+    const handleData = () => {
         let values = [];
         for (const [key, value] of Object.entries(clientData)){
              values.push(value[0])
         }
-        try{
-            setLoading(true)
-            setPersonalData(values)
-        } catch(e) {
-            setError(e)
-        } finally {
-            setLoading(false)
-        }
+        setPersonalData(values)
+        setName(values)
+        
+        setFiltering(true)
     }
+    
+
+    React.useEffect( () => {
        handleData();
         
     },[])
@@ -45,15 +45,41 @@ const ClientTable = () => {
     const indexOfFirstClient = indexOfLastClient - dataPerPage;
     const currentData = personalData.slice(indexOfFirstClient, indexOfLastClient);
 
-    console.log(currentData)
 
     //Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+      const handleChange = e => {
+        setSearch(e.target.value);
+        filter(e.target.value)
+    };
+
+    
+    
+    const filter =(search) => {
+        var userSearch = name.datos_paciente.name.filter((el) => {
+            if(el.toString().toLowerCase().includes(search.toLowerCase())
+            || el.toString().toLowerCase().includes(search.toLowerCase())){
+                console.log(el)
+                return el
+            }
+        })
+        setUser(userSearch);
+    }
+
 
   return (
         <div > 
+            <input 
+                className='filter' 
+                value={null} 
+                placeholder='Busca por nombre o apellido'
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+            />
+                    
             {!currentData ?  <Loader className='loader' /> :
+            <>
             <table class="table">
                 <thead>
                     <tr>
@@ -91,14 +117,14 @@ const ClientTable = () => {
                         </td>
                     </tr> 
                     )} 
-                    <Pagination 
+                </tbody>
+            </table>
+             <Pagination 
                         dataPerPage={dataPerPage} 
                         totalData={personalData.length}
                         paginate={paginate}
                     />
-                </tbody>
-            </table>
-            
+            </>    
         }
         </div>  
     )

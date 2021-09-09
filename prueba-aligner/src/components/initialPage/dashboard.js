@@ -8,6 +8,11 @@ import ClientTable from './ClientTable';
 
 const Dashboard = () => {
 
+    const [result, setResult] = React.useState([])
+    
+
+
+  
 
 
     return (
@@ -32,9 +37,12 @@ const Dashboard = () => {
                 <div className='user-buttons'>
                     <img className='view-icon' src={hamburguesa} onClick={()=> console.log('cambio')} />
                     <img className='view-icon' src={cuadricula}/>
+                    <button onClick={()=> setResult(5)} className='button-pagination'> 5</button>
+                    <button onClick={()=> setResult(10)} className='button-pagination'> 10 </button>
+                    <button onClick={()=> setResult(15)} className='button-pagination'> 15 </button>
                 </div>
                 <div>
-                    <ClientTable />
+                    <ClientTable result={result} />
                 </div>
         </div>
         </Layout>

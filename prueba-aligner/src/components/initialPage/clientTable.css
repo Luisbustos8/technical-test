@@ -7,7 +7,7 @@
 }
 .table {
   margin-top: 20px;
-  margin-left: 50px;
+  margin-left: 200px;
   margin-right: 50px;
 }
 
@@ -60,26 +60,12 @@
   margin-left: 500px;
 }
 
-ul.pagination {
-  margin-top: 0;
-  margin-bottom: 0;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-ul.pagination li.page-item.active a.page-link {
-  color: #445565 !important;
-  background-color: #e3e7eb !important;
-  border-color: #ced4da !important;
-}
-ul.pagination a.page-link {
-  padding: 0.75rem 1rem;
-  min-width: 3.5rem;
-  text-align: center;
-  box-shadow: none !important;
-  border-color: #ced4da !important;
-  color: #6b88a4;
-  font-weight: 900;
-  font-size: 1rem;
-}
-ul.pagination a.page-link:hover {
-  background-color: #f4f4f4;
+.filter {
+  width: 500px;
+  height: 30px;
+  font-size: 16p;
+  border: 2px solid;
+  border-color: #00acee;
+  border-radius: 10px;
+  outline: none;
 }

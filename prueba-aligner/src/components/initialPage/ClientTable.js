@@ -6,21 +6,17 @@ import placeholder from '../../assets/placeholder.png'
 import './clientTable.css'
 
 
-
-
 const ClientTable = ({result}) => {
 
     const [personalData, setPersonalData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
     const [search, setSearch] = React.useState([]);
-    const [user, setUser] = React.useState([]);
-    const [name, setName] = React.useState([])
-    const [filtering, setFiltering ] = React.useState(false)
+ 
    
    
     const [currentPage, setCurrentPage] = React.useState(1);
-    const [dataPerPage, setDataPerPage] = React.useState(5 || result);
+    const [dataPerPage, setDataPerPage] = React.useState(!result ? 5 : result);
 
     const handleData = () => {
         let values = [];
@@ -28,25 +24,18 @@ const ClientTable = ({result}) => {
              values.push(value[0])
         }
         setPersonalData(values)
-        setName(values)
-        
-        setFiltering(true)
     }
     
 
     React.useEffect( () => {
-       handleData();
-        
+       handleData(); 
     },[])
 
-    // Get current data
 
     const indexOfLastClient = currentPage * dataPerPage;
     const indexOfFirstClient = indexOfLastClient - dataPerPage;
     const currentData = personalData.slice(indexOfFirstClient, indexOfLastClient);
 
-
-    //Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
       const handleChange = e => {
@@ -55,19 +44,17 @@ const ClientTable = ({result}) => {
     };
 
     
-    
+    //to do filter -- no finish
     const filter =(search) => {
-        var userSearch = name.datos_paciente.name.filter((el) => {
+        var userSearch = currentData.datos_paciente.name.filter((el) => {
             if(el.toString().toLowerCase().includes(search.toLowerCase())
             || el.toString().toLowerCase().includes(search.toLowerCase())){
                 console.log(el)
                 return el
             }
         })
-        setUser(userSearch);
     }
-
-
+   
   return (
         <div > 
             <input 

@@ -1,0 +1,114 @@
+.modal-window {
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+  height: 500px;
+  background-color: white;
+  border: 1px solid #00acee;
+  width: 600px;
+  z-index: 50;
+  color: #00acee;
+  margin-left: 600px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.fields-form {
+  display: flex;
+  flex-direction: column;
+}
+.form-field {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height: 30px;
+  margin-left: 150px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  outline: none;
+}
+.select {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 155px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  outline: none;
+}
+.clinic-field {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 150px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  outline: none;
+}
+.nameField {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height: 30px;
+  margin-left: 150px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  outline: none;
+}
+.buttons-form {
+  display: flex;
+  flex-direction: row;
+  margin-left: 160px;
+  margin-top: 30px;
+}
+.save {
+  height: 30px;
+  width: 80px;
+  border: 1px solid;
+  border-color: green;
+  margin-right: 20px;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.edit {
+  height: 30px;
+  width: 80px;
+  border: 1px solid;
+  margin-right: 20px;
+  border-color: yellow;
+  border-radius: 15px;
+  background-color: white;
+}
+.clean {
+  height: 30px;
+  width: 80px;
+  border: 1px solid;
+  border-color: red;
+  margin-right: 20px;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.clean:hover {
+  background-color: red;
+  color: white;
+}
+
+.edit:hover {
+  background-color: yellow;
+  color: black;
+}
+.save:hover {
+  background-color: green;
+  color: white;
+}

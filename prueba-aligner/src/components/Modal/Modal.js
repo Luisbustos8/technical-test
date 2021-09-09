@@ -4,8 +4,7 @@ import './modal.css';
 import NewUserForm from './newUserForm';
 
 
-const Modal = ({showModal, closeNewUser}) => {
-
+const Modal = ({ closeNewUser}) => {
 
     return ( 
       <div className='modal-window'>

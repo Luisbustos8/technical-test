@@ -50,12 +50,11 @@ const Dashboard = () => {
                     {isOpen ?
                         <>
                         <Modal 
-                            showModal={isOpen} 
                             close={closeNewUser}                         
                         />
                         </>
                     : 
-                    <ClientTable result={result} />
+                        <ClientTable result={result} />
                     }
                 </div>
         </div>

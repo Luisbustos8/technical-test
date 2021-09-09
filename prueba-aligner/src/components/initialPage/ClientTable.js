@@ -1,5 +1,5 @@
 import React from 'react';
-import clientData from '../../api/data copy.json';
+import clientData from '../../api/data.json';
 import Loader from '../loader/loader';
 import Pagination from './pagination';
 import placeholder from '../../assets/placeholder.png'
@@ -13,8 +13,6 @@ const ClientTable = ({result}) => {
     const [error, setError] = React.useState(null);
     const [search, setSearch] = React.useState([]);
  
-   
-   
     const [currentPage, setCurrentPage] = React.useState(1);
     const [dataPerPage, setDataPerPage] = React.useState(!result ? 5 : result);
 
@@ -26,7 +24,6 @@ const ClientTable = ({result}) => {
         setPersonalData(values)
     }
     
-
     React.useEffect( () => {
        handleData(); 
     },[])
@@ -38,13 +35,13 @@ const ClientTable = ({result}) => {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-      const handleChange = e => {
+
+    //to do filter -- no finish
+    const handleChange = e => {
         setSearch(e.target.value);
         filter(e.target.value)
     };
 
-    
-    //to do filter -- no finish
     const filter =(search) => {
         var userSearch = currentData.datos_paciente.name.filter((el) => {
             if(el.toString().toLowerCase().includes(search.toLowerCase())

@@ -4,6 +4,7 @@ import Loader from '../loader/loader';
 import Pagination from './pagination';
 import placeholder from '../../assets/placeholder.png'
 import './clientTable.css'
+import { getAuth } from '../../api/auth';
 
 
 const ClientTable = ({result}) => {
@@ -12,45 +13,41 @@ const ClientTable = ({result}) => {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
     const [search, setSearch] = React.useState([]);
+    
  
     const [currentPage, setCurrentPage] = React.useState(1);
-    const [dataPerPage, setDataPerPage] = React.useState(!result ? 5 : result);
+    const [dataPerPage, setDataPerPage] = React.useState(5);
 
-    const handleData = () => {
+    const handleData = async  () => {
         let values = [];
         for (const [key, value] of Object.entries(clientData)){
              values.push(value[0])
         }
-        setPersonalData(values)
+        setPersonalData(values);
+
+        try {
+           const star = await getAuth();
+           setSearch(star.data.results)
+        } catch (error) {
+            console.log(error)
+        } 
+        
     }
     
     React.useEffect( () => {
        handleData(); 
     },[])
 
+    console.log(search, 'search')
 
     const indexOfLastClient = currentPage * dataPerPage;
     const indexOfFirstClient = indexOfLastClient - dataPerPage;
-    const currentData = personalData.slice(indexOfFirstClient, indexOfLastClient);
+    const currentData = search.slice(indexOfFirstClient, indexOfLastClient);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 
-    //to do filter -- no finish
-    const handleChange = e => {
-        setSearch(e.target.value);
-        filter(e.target.value)
-    };
-
-    const filter =(search) => {
-        var userSearch = currentData.datos_paciente.name.filter((el) => {
-            if(el.toString().toLowerCase().includes(search.toLowerCase())
-            || el.toString().toLowerCase().includes(search.toLowerCase())){
-                console.log(el)
-                return el
-            }
-        })
-    }
+  
    
   return (
         <div > 
@@ -62,15 +59,15 @@ const ClientTable = ({result}) => {
                 onChange={e => setSearch(e.target.value)}
             />
                     
-            {!currentData ?  <Loader className='loader' /> :
+            { currentData.length === 0 ?  <Loader className='loader' /> :
             <>
             <table class="table">
                 <thead>
                     <tr>
-                        <th className='nombre' >Nombre y apellido</th>
-                        <th className='clinica'>Clinica</th>
-                        <th className='clinica'>Objetivo de tratamiento</th>
-                        <th className='clinica'>Estado</th>
+                        <th className='nombre' >Nombre y apellidos</th>
+                        <th className='clinica'>Altura</th>
+                        <th className='clinica'>Peso</th>
+                        <th className='clinica'>Color de ojos</th>
                         <th className='clinica'>Acciones</th>
                     </tr>
                 </thead>
@@ -82,15 +79,15 @@ const ClientTable = ({result}) => {
                                 <img className='profile' src={placeholder}/>
                                 <div className='celda-data'>
                                     <div className='name'>
-                                        {dat.datos_paciente.nombre}
+                                        {dat.name}
                                     </div>
-                                {dat.datos_paciente.apellidos}
+                                
                                 </div>
                             </div>
                         </td>
-                        <td className='celda'>{dat.ficha_dental.clinica}</td>
-                        <td className='celda'>{dat.ficha_dental.objetivo_tratamiento}</td>
-                        <td className='celda'>{dat.ficha_dental.estado}</td>
+                        <td className='celda'>{dat.height}cm</td>
+                        <td className='celda'>{dat.mass}Kg</td>
+                        <td className='celda'>{dat.eye_color}</td>
                         <td className='celda'>
                             <select >
                                 <option value=''>Acciones</option>

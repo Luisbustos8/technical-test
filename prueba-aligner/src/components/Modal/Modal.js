@@ -1,15 +1,19 @@
 import React from 'react';
 import './modal.css';
 
-import NewUserForm from './newUserForm';
 
+const Modal = ({ isOpen, close, children}) => {
 
-const Modal = ({ closeNewUser}) => {
+    const handleModalClick = e => {
+      e.stopPropagation();
+    };
+
 
     return ( 
-      <div className='modal-window'>
-        <h1>Nuevo paciente</h1>
-        <NewUserForm close={closeNewUser} />
+      <div className={`modal-window ${isOpen && 'modal-open'}`} onClick={close}>
+        <div className='modal-dialog' onClick={handleModalClick}>
+         { children }
+        </div>
       </div>  
        
     )

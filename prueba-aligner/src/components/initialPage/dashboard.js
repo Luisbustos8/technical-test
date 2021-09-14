@@ -6,18 +6,13 @@ import './dashboard.css';
 import Layout from '../layout/layout';
 import ClientTable from './ClientTable';
 import Modal from '../Modal/Modal';
+import useModal from '../hooks/useModal';
+import NewUserForm from '../Modal/newUserForm';
 
 const Dashboard = () => {
 
     const [result, setResult] = React.useState([]);
-    const [isOpen, setIsOpen] = React.useState(false)
-
-    const newUser = () => {
-        setIsOpen(true)
-    };
-     const closeNewUser = () => {
-        setIsOpen(false)
-    };
+    const [isOpen, newUser, closeNewUser] = useModal();
 
     return (
         <Layout>
@@ -47,15 +42,16 @@ const Dashboard = () => {
                     <button onClick={()=> setResult(15)} className='button-pagination'> 15 </button>
                 </div>
                 <div>
-                    {isOpen ?
-                        <>
-                        <Modal 
-                            close={closeNewUser}                         
-                        />
-                        </>
-                    : 
-                        <ClientTable result={result} />
-                    }
+                    <Modal
+                        isOpen={isOpen}
+                        close={closeNewUser}                         
+                    >
+                         <h1>Nuevo paciente</h1>
+                         <NewUserForm close={closeNewUser} />
+                        
+                    </Modal>
+                    <ClientTable result={result} />
+                    
                 </div>
         </div>
         </Layout>
